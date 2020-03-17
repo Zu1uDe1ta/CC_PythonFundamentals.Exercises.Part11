@@ -12,16 +12,18 @@ class Rectangle:
         print((self.length + self.width) * 2)
 
 class Square(Rectangle):
+    def _init_(self, length, width):
         length = self.length
-        length = self.width
+        width = self.width
 
     def area(self):
-        print(length * length)
+        print(self.length ** 2)
 
     def perimeter(self):
-        print(4 * length)
+        print(4 * self.length)
 
 
+"""
 rect = shapes.Rectangle(2, 4)
 rect.area()
 # 8
@@ -32,3 +34,4 @@ square.area()
 
 square.perimeter()
 # 32
+"""
