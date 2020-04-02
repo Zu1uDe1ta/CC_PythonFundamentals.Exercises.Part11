@@ -1,15 +1,21 @@
 
 
 
+
 class AliveStatus(Enum):
     def __init__(self,status):
-        self.status =status
+        self.status = status
+        Deceased = 0
+        Alive = 1
+
+
 class Person:
     def __init__(self, first_name, last_name, dob, alive):
         self.first_name = first_name
         self.last_name = last_name
         self.dob = dob
-        self.alive = alive
+        self.alive = AliveStatus.Alive
+
 
     def update_first_name(self, new_fn):
         self.first_name = new_fn
@@ -24,31 +30,36 @@ class Person:
         self.status = new_status
 
 class Instructor(Person):
-    def __init__(self, id):
-        self.id = str("Instructor_" + id)
-        super().__init__(first_name, last_name, dob, alive)
+    def __init__(self, first_name, last_name, dob):
+        super().__init__(self, first_name, last_name, dob)
+        self.instructor_id = f"Instructor_{uuid.uuid4()}"
+
 class Student(Person):
-    def __init__(self, id):
+    def __init__(self, first_name, last_name, dob):
         self.id = str("Student_" + id)
-        super().__init__(first_name, last_name, dob, alive)
+        Person.__init__(self, first_name, last_name, dob, alive)
+        self.instructor_id = f"Student_{uuid.uuid4()}"
 
 class ZipCodeStudent(Student):
+    def __init__(self, first_name, last_name, dob):
+        super().__init__(first_name, last_name, dob, alive)
+
+class PreKStudent(Students):
     def __init__(self):
         super().__init__(first_name, last_name, dob, alive)
-class prek(Students):
-    def __init__(self):
-        super().__init__(first_name, last_name, dob, alive)
+
 class Middle_School(Student):
     def __init__(self):
         super().__init__(first_name, last_name, dob, alive)
+
 class College(Student):
     def __init__(self):
         super().__init__(first_name, last_name, dob, alive)
 
 class Classroom():
     def __int__(self):
-        students = []
-        teachers = []
+        self.students: Dict[str, Student] = {}
+        self.instructors: Dict[str, Instructor] = {}
 
     def add_instructor(self, instructor):
         teachers.append(instructor)

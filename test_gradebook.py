@@ -3,7 +3,7 @@ import unittest.mock
 from io import StringIO
 
 import gradebook
-
+import shapes
 
 class PersonTest(unittest.TestCase):
 
